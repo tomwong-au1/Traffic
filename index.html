@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-HK">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#e4001b">
+    <title>香港巴士即時站</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="app-header">
+        <div class="brand">
+          <span class="brand-icon" aria-hidden="true">🚌</span>
+          <div>
+            <h1 data-i18n="appTitle">香港巴士即時站</h1>
+            <p data-i18n="tagline">下一班巴士，幾時到？</p>
+          </div>
+        </div>
+        <div class="header-actions">
+          <label class="visually-hidden" for="language-select" data-i18n="languageLabel">語言</label>
+          <select id="language-select" class="language-select" aria-label="語言">
+            <option value="zh-HK">繁體中文</option>
+            <option value="en">English</option>
+          </select>
+          <span class="live-status"><span class="status-dot"></span><span data-i18n="liveStatus">即時資訊</span></span>
+        </div>
+      </header>
+
+      <nav class="service-tabs" aria-label="巴士公司">
+        <button class="tab-button is-active" type="button" data-operator="kmb" aria-pressed="true"><span data-i18n="kmbTab">九巴 KMB</span></button>
+        <button class="tab-button" type="button" data-operator="citybus" aria-pressed="false"><span data-i18n="citybusTab">城巴 Citybus</span></button>
+      </nav>
+
+      <section class="search-section" aria-labelledby="search-heading">
+        <h2 id="search-heading" class="visually-hidden" data-i18n="searchHeading">查詢巴士到站時間</h2>
+        <form id="route-form">
+          <label for="route-input" data-i18n="routeLabel">路線號碼</label>
+          <div class="route-search">
+            <input id="route-input" name="route" type="search" value="960" placeholder="例如：960、1A" data-i18n-placeholder="routePlaceholder" autocomplete="off" required>
+            <button class="search-button" type="submit" data-i18n="searchButton">搜尋路線</button>
+          </div>
+
+          <div class="select-field">
+            <label for="direction-select" data-i18n="directionLabel">方向</label>
+            <select id="direction-select" disabled>
+              <option>請先搜尋路線</option>
+            </select>
+          </div>
+
+          <div class="select-field">
+            <label for="stop-select" data-i18n="stopLabel">選擇車站</label>
+            <select id="stop-select" disabled>
+              <option>請先搜尋路線</option>
+            </select>
+          </div>
+        </form>
+        <p id="feedback" class="feedback" role="status" aria-live="polite">正在連接巴士即時資料…</p>
+      </section>
+
+      <section class="results-section" aria-labelledby="results-heading">
+        <div class="results-heading">
+          <div>
+            <p class="eyebrow" data-i18n="etaHeading">到站預報</p>
+            <h2 id="results-heading">請選擇路線及車站</h2>
+          </div>
+          <span id="updated-at" class="updated-at"></span>
+        </div>
+        <div id="eta-list" class="eta-list" aria-live="polite">
+          <div class="empty-state"><span class="loader" aria-hidden="true"></span><span>載入路線資料中…</span></div>
+        </div>
+        <p class="data-note" data-i18n="dataNote">到站時間由巴士公司開放數據提供，資料約每 30 秒更新一次。</p>
+      </section>
+
+      <footer class="app-footer">
+        <span data-i18n="disclaimer">非巴士公司官方應用程式</span>
+        <a href="https://data.gov.hk/" target="_blank" rel="noreferrer"><span data-i18n="dataSource">資料來源：</span>data.gov.hk</a>
+      </footer>
+    </main>
+  </body>
+</html>
